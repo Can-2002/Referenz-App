@@ -1,0 +1,100 @@
+{
+  // Name des Codespaces / Dev Containers.
+  // Dieser Name wird in GitHub Codespaces und VS Code angezeigt.
+  "name": "ReferenzApp Python Codespace",
+
+  // Der Container wird über ein eigenes Dockerfile gebaut.
+  "build": {
+    // Das Dockerfile liegt im gleichen Ordner wie diese Datei:
+    // .devcontainer/Dockerfile
+    "dockerfile": "Dockerfile",
+
+    // Der Build-Kontext ist der Hauptordner des Repositories.
+    // ".." bedeutet: eine Ebene höher als .devcontainer/
+    "context": ".."
+  },
+
+  // Öffnet automatisch den Repository-Hauptordner im Codespace.
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  // VS-Code-spezifische Einstellungen und Extensions für den Codespace.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Standard-Python-Interpreter im Container.
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+
+        // pytest als Testframework aktivieren.
+        "python.testing.pytestEnabled": true,
+
+        // unittest deaktivieren, damit nur pytest verwendet wird.
+        "python.testing.unittestEnabled": false,
+
+        // pytest sucht Tests im Ordner tests/.
+        "python.testing.pytestArgs": [
+          "tests"
+        ],
+
+        // Dateien beim Speichern automatisch formatieren.
+        "editor.formatOnSave": true,
+
+        // Hilfslinie bei 100 Zeichen.
+        "editor.rulers": [
+          100
+        ],
+
+        // Leerzeichen am Zeilenende entfernen.
+        "files.trimTrailingWhitespace": true,
+
+        // Am Dateiende automatisch eine Leerzeile einfügen.
+        "files.insertFinalNewline": true,
+
+        // Spezielle Einstellungen für Python-Dateien.
+        "[python]": {
+          
+          // Imports beim Speichern organisieren.
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        }
+      },
+
+      // Extensions, die im Codespace automatisch installiert werden.
+      "extensions": [
+        // Python-Unterstützung.
+        "ms-python.python",
+
+        // Python-Autovervollständigung und Analyse.
+        "ms-python.vscode-pylance",
+
+        // Black-Formatter.
+        "ms-python.black-formatter",
+
+        // Ruff-Linter.
+        "charliermarsh.ruff",
+
+        // mypy-Typprüfung.
+        "ms-python.mypy-type-checker",
+
+        // Makefile-Unterstützung.
+        "ms-vscode.makefile-tools",
+
+        // Verbesserte Git-Ansicht.
+        "eamodio.gitlens",
+
+        // TOML-Unterstützung für pyproject.toml.
+        "tamasfe.even-better-toml",
+
+        // Rechtschreibprüfung für README, Kommentare und Doku.
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+
+  // Dieses Skript wird automatisch ausgeführt,
+  // nachdem der Codespace erstellt wurde.
+  "postCreateCommand": "bash .devcontainer/postCreate.sh",
+
+  // Standardbenutzer im Container.
+  "remoteUser": "vscode"
+}
