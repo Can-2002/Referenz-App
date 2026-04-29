@@ -1,0 +1,2 @@
+# Liste aller Python-Abhängigkeiten.
+# Zum Beispiel: PySide6
